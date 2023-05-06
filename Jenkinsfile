@@ -1,5 +1,5 @@
 pipeline {
-   #代理
+   //代理
     agent {
         docker {		
             image 'maven' 
@@ -7,20 +7,20 @@ pipeline {
         }
     }
     stages {
-	#构建
+	//构建
         stage('Build') { 
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-	#test
+	//test
 		stage('Test') {
             steps {
                 sh 'mvn test'
             }
             post {
                 always {
-				#归档JUnit XML报告
+				//归档JUnit XML报告
                     junit 'target/surefire-reports/*.xml'
                 }
             }
